@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .success-animation {
+      display: none;
+      font-size: 3rem;
+      color: #28a745;
+      animation: popIn 0.5s ease forwards;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card p-4 shadow-sm" style="width: 300px;">
+    <h4 class="text-center mb-3">Enter Amount</h4>
+    <input type="number" id="amount" class="form-control mb-3" placeholder="Amount for Arya Dhiman">
+    <button id="payBtn" class="btn btn-primary btn-block">Pay</button>
+
+    <div id="successMessage" class="text-center mt-3">
+      <div class="success-animation">✔️</div>
+      <p id="creditMessage" class="mt-2" style="display: none;"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("payBtn").addEventListener("click", function() {
+      const amount = document.getElementById("amount").value;
+      
+      if (amount) {
+        document.getElementById("payBtn").style.display = "none";
+        document.querySelector(".success-animation").style.display = "block";
+        document.querySelector(".success-animation").classList.add("animate");
+
+        // Update the success message with the entered amount
+        document.getElementById("creditMessage").textContent = `${amount} points successfully credited to Arya Dhiman!`;
+        setTimeout(() => {
+          document.getElementById("creditMessage").style.display = "block";
+        }, 500);
+      } else {
+        alert("Please enter an amount.");
+      }
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
